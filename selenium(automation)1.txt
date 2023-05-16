@@ -1,0 +1,319 @@
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FileUpload {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demo.guru99.com/test/upload/");
+		driver.manage().window().maximize();
+		
+		WebElement uploadfile=driver.findElement(By.id("uploadfile_0"));
+		uploadfile.sendKeys("C:\\Users\\ELCOT\\Desktop\\Resume_BEBICK_NOBEL.doc");
+		
+		WebElement checkbox=driver.findElement(By.id("terms"));
+		checkbox.click();
+		
+		driver.findElement(By.id("submitbutton")).click();
+
+	}
+
+}
+
+
+
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class KeyboardActionsTabEnter {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://en-gb.facebook.com/");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.id("email")).sendKeys("sunilabi2295@gmail.com");
+		
+		Actions act = new Actions(driver);
+		act.sendKeys(Keys.TAB,"password").build().perform();
+		act.sendKeys(Keys.ENTER).build().perform();
+		
+
+	}
+
+}
+
+
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class KeyBoardActionUpDown {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://the-internet.herokuapp.com/inputs");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//p[contains(text(),'Number')]/following::input[1]")).sendKeys("5");
+        Actions act = new Actions(driver);//to use keyboard
+        //Thread.sleep(3000);
+        
+        for(int i=0;i<5;i++)
+        {
+        	Thread.sleep(1000);
+        act.sendKeys(Keys.ARROW_UP).build().perform();//to use up arrow
+        Thread.sleep(3000);
+        }
+        for(int i=0;i<10;i++) {
+        Thread.sleep(1000);
+        act.sendKeys(Keys.ARROW_DOWN).build().perform();//to use down arrow
+        //act.sendKeys(Keys.BACK_SPACE,"10").build().perform();//to erase to enter 10
+       
+       // driver.findElement(By.id("adddd")).sendKeys(Keys.SHIFT,"qspider");//to capitalize the QSPIDER
+        }
+        driver.close();
+	}
+
+}
+
+
+
+
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class MouseActionDragAndDrop {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		WebElement element1 =driver.findElement(By.id("draggable"));
+		WebElement element2 = driver.findElement(By.id("droppable"));
+		Actions act = new Actions(driver);
+		Thread.sleep(5000);
+		act.dragAndDrop(element1, element2).build().perform();//to use mouse drag&drop.
+
+	}
+
+}
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class MouseActionMouseOver {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.flipkart.com/");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//a[contains(text(),'New')]/preceding::button[2]")).click();
+		WebElement electroniclink = driver.findElement(By.xpath("//div[contains(text(),'Electronics')]"));
+        Actions act = new Actions(driver);
+        Thread.sleep(5000);
+        act.moveToElement(electroniclink).build().perform();//to use mouse over
+        
+       // WebElement homelink =driver.findElement(By.xpath("//div[contains(text(),'Home')]"));
+        Actions xyz =new Actions(driver);
+        Thread.sleep(2000);
+        xyz.moveToElement(driver.findElement(By.xpath("//div[contains(text(),'Home')]"))).build().perform();
+        
+	}
+
+}
+
+
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class MouseActionRightClick {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demo.guru99.com/test/simple_context_menu.html");
+		driver.manage().window().maximize();
+		
+		WebElement rightclick = driver.findElement(By.xpath("//span[contains(text(),'right click me')]"));
+		Actions act = new Actions (driver);
+		act.contextClick(rightclick).build().perform();//to use mouse rightclick
+		
+		driver.findElement(By.xpath("//span[text()='Cut']")).click();
+		Alert abc = driver.switchTo().alert();
+		String popoup=abc.getText();
+		System.out.println(popoup);
+		Thread.sleep(5000);
+		abc.accept();
+
+	}
+
+}
+
+
+
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class MouseActionsDoubleClick {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demo.guru99.com/test/simple_context_menu.html");
+		driver.manage().window().maximize();
+		
+		WebElement doubleclick = driver.findElement(By.xpath("//button[contains(text(),'Double-Click Me To See Alert')]"));
+        Actions act = new Actions(driver);
+        act.doubleClick(doubleclick).build().perform();//to use mouse doubleclick
+        
+        Alert abc = driver.switchTo().alert();
+        String popup=abc.getText();
+        System.out.println(popup);
+        Thread.sleep(5000);
+         abc.accept();
+         
+	}
+
+}
+
+
+
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class NavigationalCommands {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://zero.webappsecurity.com/");
+		driver.manage().window().maximize();
+		
+		//driver.navigate().to("https://www.flipkart.com/");
+		//Thread.sleep(3000);
+		//driver.navigate().back();
+		//Thread.sleep(3000);
+		//driver.navigate().forward();
+		////Thread.sleep(3000);
+		//driver.navigate().refresh();
+		
+		driver.navigate().to("https://www.facebook.com/");
+		Thread.sleep(3000);
+		driver.navigate().forward();
+		Thread.sleep(3000);
+		driver.navigate().back();
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+		
+		
+
+	}
+
+}
+
+
+
+
+
+package automationFramework;
+
+import java.util.ArrayList;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandlingTabs {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.naukri.com/");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//div[contains(text(),'Services')]")).click();
+		ArrayList <String> NakuriTabs = new ArrayList <>(driver.getWindowHandles());
+		for(String output:NakuriTabs)
+		{
+			System.out.println(output);
+		}
+		driver.switchTo().window(NakuriTabs.get(1));
+		Thread.sleep(3000);
+		String Pagetitle=driver.getTitle();
+		System.out.println(Pagetitle);
+		driver.close();
+		
+		
+		
+		
+		
+
+	}
+
+}
+

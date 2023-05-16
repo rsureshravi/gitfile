@@ -1,0 +1,244 @@
+formy
+
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Formy {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://formy-project.herokuapp.com/form");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.id("first-name")).sendKeys("chukkiiiii");
+		driver.findElement(By.id("last-name")).sendKeys("kaliyaaaa");
+		driver.findElement(By.id("job-title")).sendKeys("fighter");
+		
+		WebElement radiobutton = driver.findElement(By.id("radio-button-2"));
+		radiobutton.click();
+		
+		WebElement checkbox = driver.findElement(By.id("checkbox-1"));
+		checkbox.click();
+		
+		Select yop = new Select(driver.findElement(By.id("select-menu")));
+		yop.selectByVisibleText("2-4");
+		
+		driver.findElement(By.id("datepicker")).sendKeys("05/22/1995");
+		
+		driver.findElement(By.xpath("//a[text()='Submit']")).click();
+		
+
+	}
+
+}
+
+
+
+
+
+
+
+SWAGLAB
+
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SwagLab3 {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.saucedemo.com/");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.id("user-name")).sendKeys("standard_user");
+		driver.findElement(By.name("password")).sendKeys("secret_sauce");
+		driver.findElement(By.id("login-button")).click();
+		Thread.sleep(5000);
+		
+		driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+		driver.findElement(By.xpath("//span[contains(text(),'Name (A to Z)')]/preceding::a[1]")).click();
+		//driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a")).click();
+		driver.findElement(By.id("checkout")).click();
+		
+		Thread.sleep(2000);
+		driver.findElement(By.id("first-name")).sendKeys("chotta");
+		driver.findElement(By.id("last-name")).sendKeys("beam");
+		driver.findElement(By.id("postal-code")).sendKeys("620012");
+		driver.findElement(By.id("continue")).click();
+		driver.findElement(By.id("finish")).click();
+		
+		String order=driver.findElement(By.xpath("//h2[contains(text(),'THANK YOU FOR YOUR ORDER')]")).getText();
+		System.out.println(order);
+		
+		String title=driver.getTitle();
+		System.out.println(title);
+		
+		String url=driver.getCurrentUrl();
+		System.out.println(url);
+		
+		
+		
+		
+
+	}
+
+}
+
+
+WIKIPIDEA
+
+
+
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SimiliarElements {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://en.wikipedia.org/wiki/Rajinikanth");
+        driver.manage().window().maximize();
+        
+        //to count the link
+        int linkcount = driver.findElements(By.tagName("a")).size();
+        System.out.println(linkcount);
+        
+        //to count the image
+        int imagecount = driver.findElements(By.tagName("img")).size();
+        System.out.println(imagecount);
+
+	}
+
+}
+
+
+
+
+
+ALERTPOPUP
+
+
+package automationFramework;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandlingAlertPopup {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demoqa.com/alerts");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.id("alertButton")).click();
+		
+		//to acess the alert pop message
+		Alert abc = driver.switchTo().alert();
+		String popuptext = abc.getText(); //to print text
+		System.out.println(popuptext); 
+		
+		Thread.sleep(5000);
+		abc.accept(); //to click on ok
+		driver.close();
+
+	}
+
+}
+
+
+
+CONFIRMATIONPOPUP
+
+
+package automationFramework;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandlingConfirmPopup {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demoqa.com/alerts");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.id("confirmButton")).click();
+		
+		Alert abc = driver.switchTo().alert();
+		String popoup = abc.getText();
+		System.out.println(popoup);
+
+		Thread.sleep(5000);
+		abc.accept();//if click ok
+		//abc.dismiss();//if click cancel
+		
+		String result = driver.findElement(By.id("confirmResult")).getText();
+		System.out.println(result);
+		
+		
+	}
+	
+
+}
+
+
+
+PROMPTPOPUP
+
+
+package automationFramework;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandlingPromptPopup {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\selenium(automation)\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demoqa.com/alerts");
+		driver.manage().window().maximize();
+		Thread.sleep(10000);
+		
+		driver.findElement(By.id("promtButton")).click();
+		
+		Alert abc = driver.switchTo().alert();
+		String popup = abc.getText();
+		System.out.println(popup);
+		Thread.sleep(5000);
+		abc.sendKeys("sunil");
+		
+		abc.accept();
+		
+		String result = driver.findElement(By.id("promtButton")).getText();
+		System.out.println(result);
+		
+	
+		
+
+	}
+
+}
+
